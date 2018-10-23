@@ -8,7 +8,7 @@ import Include from './Include';
 export default class Query {
   protected repository: string | undefined;
   protected endpoint: string | undefined;
-  protected query: any = {};
+  protected query: QueryOptions = {};
   protected entityId: string | undefined;
   protected httpClient: HttpClient;
 

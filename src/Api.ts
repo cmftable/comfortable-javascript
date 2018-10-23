@@ -54,6 +54,10 @@ export default class Api {
     return this.query('collections', queryOptions, apiId);
   }
 
+  public getAsset(id: string, queryOptions: QueryOptions) {
+    return this.query('assets', queryOptions, id)
+  }
+
   private query(resource: string, queryOptions: QueryOptions, entityId?: string) {
     const id = entityId ? entityId : '';
     return new Query(resource, this.repository, this.httpClient, queryOptions, entityId).execute();

@@ -8,6 +8,7 @@ var repositoryApiId = process.env.CMFT_REPOSITORY;
 var apiKey = process.env.CMFT_APIKEY;
 var documentId = process.env.CMFT_DOCUMENT_ID;
 var documentAlias = process.env.CMFT_DOCUMENT_ALIAS;
+var assetId = process.env.CMFT_ASSET_ID;
 
 if (!repositoryApiId || !apiKey || !documentId || !documentAlias) {
   throw new Error('Environment variables "CMFT_REPOSITORY", "CMFT_APIKEY" "CMFT_DOCUMENT_ID" and "CMFT_DOCUMENT_ALIAS" has to be set.');
@@ -223,6 +224,13 @@ describe('Comfortable', () => {
 
   it('should retrieve a single document by alias', function(done) {
     api.getAlias(documentAlias)
+      .then((response) => {
+        done();
+      })
+  });
+
+  it('should retrieve a single assets by id', function (done) {
+    api.getAsset(assetId)
       .then((response) => {
         done();
       })
