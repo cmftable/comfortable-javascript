@@ -14,5 +14,6 @@ export default class Api {
     getDocument(id: string, queryOptions: QueryOptions): Promise<any>;
     getAlias(apiId: string, queryOptions: QueryOptions): Promise<any>;
     getCollection(apiId: string, queryOptions: QueryOptions): Promise<any>;
+    getAsset(id: string, queryOptions: QueryOptions): Promise<any>;
     private query;
 }
