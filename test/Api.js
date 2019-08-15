@@ -9,9 +9,10 @@ var apiKey = process.env.CMFT_APIKEY;
 var documentId = process.env.CMFT_DOCUMENT_ID;
 var documentAlias = process.env.CMFT_DOCUMENT_ALIAS;
 var assetId = process.env.CMFT_ASSET_ID;
+var proxyUrl = process.env.CMFT_PROXY_URL;
 
-if (!repositoryApiId || !apiKey || !documentId || !documentAlias) {
-  throw new Error('Environment variables "CMFT_REPOSITORY", "CMFT_APIKEY" "CMFT_DOCUMENT_ID" and "CMFT_DOCUMENT_ALIAS" has to be set.');
+if (!repositoryApiId || !apiKey || !documentId || !documentAlias || !assetId || !proxyUrl) {
+  throw new Error('Environment variables "CMFT_REPOSITORY", "CMFT_APIKEY" "CMFT_DOCUMENT_ID", "CMFT_DOCUMENT_ALIAS", "CMFT_ASSET_ID" and "CMFT_PRDXY_URL" has to be set.');
 }
 
 
@@ -32,6 +33,24 @@ describe('Comfortable', () => {
 
   it('should connect successfully to the api', function(done) {
     var tempApi = Comfortable.api(repositoryApiId, apiKey);
+    expect(tempApi).to.be.an.instanceOf(Comfortable.Api)
+
+    tempApi.getRepository()
+      .then(response => response.json())
+      .then(body => {
+        assert.equal(body.meta.apiId, repositoryApiId);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      })
+  });
+
+  it('should use the proxy endpoint', function(done) {
+    var tempApi = Comfortable.api(repositoryApiId, apiKey, {
+      useProxy: true,
+      proxy: 'http://127.0.0.1:8000/v1'
+    });
     expect(tempApi).to.be.an.instanceOf(Comfortable.Api)
 
     tempApi.getRepository()
