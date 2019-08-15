@@ -2,6 +2,7 @@ import HttpClient from './HttpClient';
 import { QueryOptions } from './QueryOptions';
 
 import Query from './Query';
+import { OptionsInterface } from './OptionsInterface';
 
 export default class Api {
   static API_ENDPOINT: string = 'https://api.cmft.io/v1';
@@ -10,7 +11,8 @@ export default class Api {
   protected httpClient: HttpClient;
   protected url: string;
 
-  constructor(repository: string, apiKey: string) {
+  constructor(repository: string, apiKey: string, options?: OptionsInterface) {
+    let endpoint = Api.API_ENDPOINT;
     this.repository = repository;
 
     if (apiKey === null || apiKey === '') {
@@ -23,11 +25,12 @@ export default class Api {
         Authorization: apiKey,
       },
     });
-    this.url = [Api.API_ENDPOINT, this.repository].join('/');
-  }
 
-  public static getApiEndpoint() {
-    return Api.API_ENDPOINT;
+    if(options && options.useProxy && options.proxy) {
+      endpoint = options.proxy;
+    }
+
+    this.url = [endpoint, this.repository].join('/');
   }
 
   public getRepository() {
