@@ -49,7 +49,7 @@ describe('Comfortable', () => {
   it('should use the proxy endpoint', function(done) {
     var tempApi = Comfortable.api(repositoryApiId, apiKey, {
       useProxy: true,
-      proxy: 'http://127.0.0.1:8000/v1'
+      proxy: proxyUrl
     });
     expect(tempApi).to.be.an.instanceOf(Comfortable.Api)
 
