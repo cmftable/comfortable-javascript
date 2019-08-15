@@ -1,13 +1,13 @@
 import HttpClient from './HttpClient';
 import { QueryOptions } from './QueryOptions';
+import { OptionsInterface } from './OptionsInterface';
 export default class Api {
     static API_ENDPOINT: string;
     protected repository: string;
     protected apiKey: string;
     protected httpClient: HttpClient;
     protected url: string;
-    constructor(repository: string, apiKey: string);
-    static getApiEndpoint(): string;
+    constructor(repository: string, apiKey: string, options?: OptionsInterface);
     getRepository(): Promise<Response>;
     getRepositoryEndpoint(): string;
     getDocuments(queryOptions?: QueryOptions | any): Promise<any>;

@@ -43,7 +43,7 @@ const Comfortable = require('comfortable-javascript');
 ### Connect to your Repository and make your first request:
 
 ```javascript
-const api = Comfortable.api('{repository-api-id}', '{api-key}');
+const api = Comfortable.api('{repository-api-id}', '{api-key}', options);
 
 api.getDocuments()
   .then(result => {
@@ -55,14 +55,20 @@ api.getDocuments()
 ```
 Complete documentation, installation instructions, and examples are available [here](https://docs.comfortable.io/sdks/javascript).
 
+### Options:
+| Option   | Type    | Description                                                                   |
+|----------|---------|-------------------------------------------------------------------------------|
+| useProxy | boolean | enables the usage of a Proxy Endpoint instead of using https://api.cmft.io/v1 |
+| proxy    | string  | Proxy Url e.g. https://custom-api.com/v1                                      |
+
 ## Tests
  1. npm is a prerequisite for running the tests. Install npm on your system, then run ```npm install``` to install required files.
- 2. Edit ```tests/Api.ts``` to add your credentials and test documents. Alternatively you can set your credentials as environment variables. For this you have to define `CMFT_REPOSITORY`, `CMFT_APIKEY`, `CMFT_DOCUMENT_ID`, `CMFT_DOCUMENT_ALIAS`.
+ 2. Edit ```tests/Api.ts``` to add your credentials and test documents. Alternatively you can set your credentials as environment variables. For this you have to define `CMFT_REPOSITORY`, `CMFT_APIKEY`, `CMFT_DOCUMENT_ID`, `CMFT_DOCUMENT_ALIAS`. `CMFT_ASSET_ID`. `CMFT_PROXY_URL`.
  3. The tests can be executed by running the following command from the root directory:
  ```javascript
  npm run test
  // or
-CMFT_REPOSITORY=... CMFT_APIKEY=... CMFT_DOCUMENT_ID=... CMFT_DOCUMENT_ALIAS=... npm run test
+CMFT_REPOSITORY=... CMFT_APIKEY=... CMFT_DOCUMENT_ID=... CMFT_DOCUMENT_ALIAS=... CMFT_ASSET_ID=... CMFT_PROXY_URL=... npm run test
  ```
 
 ## More information
