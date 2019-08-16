@@ -13,6 +13,7 @@ export default class Api {
 
   constructor(repository: string, apiKey: string, options?: OptionsInterface) {
     let endpoint = Api.API_ENDPOINT;
+
     this.repository = repository;
 
     if (apiKey === null || apiKey === '') {
@@ -62,7 +63,6 @@ export default class Api {
   }
 
   private query(resource: string, queryOptions: QueryOptions, entityId?: string) {
-    const id = entityId ? entityId : '';
-    return new Query(resource, this.repository, this.httpClient, queryOptions, entityId).execute();
+    return new Query(resource, this.url, this.httpClient, queryOptions, entityId).execute();
   }
 }
