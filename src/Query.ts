@@ -1,22 +1,21 @@
 import HttpClient from './HttpClient';
-import Api from './Api';
 import { QueryOptions } from './QueryOptions';
 import Filter from './Filter';
 import Sorting from './Sorting';
 import Include from './Include';
 
 export default class Query {
-  protected repository: string | undefined;
-  protected endpoint: string | undefined;
+  protected resource: string | undefined;
   protected query: QueryOptions = {};
   protected entityId: string | undefined;
   protected httpClient: HttpClient;
+  protected endpoint: string;
 
-  constructor(endpoint: string, repository: string, httpClient: HttpClient, queryOptions?: QueryOptions, entityId?: string) {
+  constructor(resource: string, url: string, httpClient: HttpClient, queryOptions?: QueryOptions, entityId?: string) {
     this.entityId = entityId;
-    this.repository = repository;
     this.httpClient = httpClient;
-    this.endpoint = endpoint;
+    this.resource = resource;
+    this.endpoint = url;
 
     if (queryOptions) {
       this.setQuery(queryOptions);
@@ -67,7 +66,7 @@ export default class Query {
   }
 
   public getEndpoint(entityId?: string) {
-    const urlArray = [Api.API_ENDPOINT, this.repository, this.endpoint];
+    const urlArray = [this.endpoint, this.resource];
 
     if (entityId) {
       urlArray.push(`${entityId}`);
