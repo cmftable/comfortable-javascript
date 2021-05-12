@@ -1,0 +1,50 @@
+{
+  "name": "comfortable-javascript",
+  "version": "1.2.1",
+  "description": "SDK for the Comfortable.io Delivery API for Javascript and Node.js",
+  "scripts": {
+    "test": "mocha test/**/*.js",
+    "clean": "shx rm -rf d.ts lib dist",
+    "lint": "tslint src/**/*.ts --project tsconfig.json",
+    "dev": "npm run clean && webpack-cli --mode development --watch",
+    "build": "npm run clean && ./node_modules/.bin/webpack-cli --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/cmftable/comfortable-javascript.git"
+  },
+  "keywords": [
+    "comfortable.io",
+    "javascript",
+    "sdk",
+    "typescript",
+    "node.js"
+  ],
+  "author": "Christian Schwerdt <christian@cmft.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cmftable/comfortable-javascript/issues"
+  },
+  "main": "dist/comfortable.min.js",
+  "types": "./d.ts/index.d.ts",
+  "homepage": "https://github.com/cmftable/comfortable-javascript#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.6",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "shx": "^0.3.2",
+    "ts-loader": "^5.2.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "typescript": "^3.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "comfortable-javascript": "^1.2.0",
+    "cross-fetch": "^2.2.2",
+    "promise-polyfill": "^8.1.0"
+  }
+}
