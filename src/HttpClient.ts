@@ -15,7 +15,7 @@ export default class HttpClient {
   }
 
   fetch(url: string, overrideOptions?: RequestOptions) {
-    const options:Object = (<any>Object).assign(this.requestOptions, overrideOptions);
+    const options:Object = (<any>Object).assign({}, this.requestOptions, overrideOptions);
 
     return fetch(url, options)
       .then((res) => {

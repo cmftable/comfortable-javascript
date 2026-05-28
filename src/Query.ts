@@ -53,16 +53,8 @@ export default class Query {
       url = `${url}?query=${encodeURIComponent(queryParameter)}`;
     }
 
-    return new Promise<Response>((resolve, reject) => {
-      return this.httpClient.fetch(url)
-        .then((response: any) => {
-          resolve(response);
-        })
-        .catch((err: any) => {
-          reject(err);
-        });
-    })
-    .then(response => response.json());
+    return this.httpClient.fetch(url)
+      .then((response: any) => response.json());
   }
 
   public getEndpoint(entityId?: string) {

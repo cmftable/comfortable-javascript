@@ -71,6 +71,53 @@ Complete documentation, installation instructions, and examples are available [h
 CMFT_REPOSITORY=... CMFT_APIKEY=... CMFT_DOCUMENT_ID=... CMFT_DOCUMENT_ALIAS=... CMFT_ASSET_ID=... CMFT_PROXY_URL=... npm run test
  ```
 
+## Docker-based test/build workflow
+Use this if your host machine should not provide Node/npm directly.
+
+1. Build the SDK container image:
+```sh
+npm run docker:build-image
+```
+2. Install dependencies in the container:
+```sh
+npm run docker:install
+```
+3. Build SDK bundle in the container:
+```sh
+npm run docker:build
+```
+4. Run tests in the container:
+```sh
+CMFT_REPOSITORY=... CMFT_APIKEY=... CMFT_DOCUMENT_ID=... CMFT_DOCUMENT_ALIAS=... CMFT_ASSET_ID=... CMFT_PROXY_URL=... npm run docker:test
+```
+
+5. Optional: enable per-test response debug output:
+```sh
+CMFT_DEBUG_TESTS=1 npm run docker:test
+```
+This prints API responses for each test with the `[TEST DEBUG]` prefix.
+
+## Security audit in Docker
+Read current security status:
+```sh
+npm run docker:audit
+```
+
+Read only production dependency status:
+```sh
+npm run docker:audit:prod
+```
+
+Apply non-breaking security fixes:
+```sh
+npm run docker:audit:fix
+```
+
+Apply all possible fixes including potentially breaking updates:
+```sh
+npm run docker:audit:fix:force
+```
+
 ## More information
  - [Developer Documentation](https://docs.comfortable.io)
  - [Javascript SDK Documentation](https://docs.comfortable.io/sdks/javascript)

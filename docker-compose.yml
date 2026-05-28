@@ -1,0 +1,16 @@
+services:
+  sdk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    environment:
+      - CMFT_REPOSITORY=demo
+      - CMFT_APIKEY=REDACTED
+      - CMFT_DOCUMENT_ID=REDACTED
+      - CMFT_DOCUMENT_ALIAS=REDACTED
+      - CMFT_ASSET_ID=REDACTED
+      - CMFT_PROXY_URL=https://api.cmft.io/v1
+      - CMFT_DEBUG_TESTS=${CMFT_DEBUG_TESTS:-}
