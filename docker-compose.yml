@@ -7,10 +7,10 @@ services:
     volumes:
       - ./:/workspace
     environment:
-      - CMFT_REPOSITORY=demo
-      - CMFT_APIKEY=REDACTED
-      - CMFT_DOCUMENT_ID=REDACTED
-      - CMFT_DOCUMENT_ALIAS=REDACTED
-      - CMFT_ASSET_ID=REDACTED
-      - CMFT_PROXY_URL=https://api.cmft.io/v1
+      - CMFT_REPOSITORY=${CMFT_REPOSITORY:-}
+      - CMFT_APIKEY=${CMFT_APIKEY:-}
+      - CMFT_DOCUMENT_ID=${CMFT_DOCUMENT_ID:-}
+      - CMFT_DOCUMENT_ALIAS=${CMFT_DOCUMENT_ALIAS:-}
+      - CMFT_ASSET_ID=${CMFT_ASSET_ID:-}
+      - CMFT_PROXY_URL=${CMFT_PROXY_URL:-}
       - CMFT_DEBUG_TESTS=${CMFT_DEBUG_TESTS:-}
